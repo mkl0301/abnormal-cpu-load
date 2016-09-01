@@ -1,0 +1,173 @@
+# echo 1 > /proc/timer_stats;sleep 10;
+# echo 0 > /proc/timer_stats; cat /proc/timer_stats | sort -t ',' -b -k 2 -n | grep test
+    6, 25115 test-host        do_nanosleep (hrtimer_wakeup)
+ 99867, 25115 test-host        hrtimer_start (it_real_fn)
+# sudo perf stat -e irq:*,timer:* -p $(pidof test-host) sleep 10
+  Warning: unknown op '{'
+  Warning: unknown op '{'
+
+ Performance counter stats for process id '25115':
+
+                 0 irq:irq_handler_entry                                       
+                 0 irq:irq_handler_exit                                        
+                 0 irq:softirq_entry                                           
+                 0 irq:softirq_exit                                            
+                 0 irq:softirq_raise                                           
+                 0 timer:timer_init                                            
+                 0 timer:timer_start                                           
+                 0 timer:timer_expire_entry                                    
+                 0 timer:timer_expire_exit                                     
+                 0 timer:timer_cancel                                          
+           100,745 timer:hrtimer_init                                          
+           201,652 timer:hrtimer_start                                         
+                 4 timer:hrtimer_expire_entry                                   
+                 4 timer:hrtimer_expire_exit                                   
+           101,065 timer:hrtimer_cancel                                        
+                 0 timer:itimer_state                                          
+                 2 timer:itimer_expire                                         
+                 0 timer:tick_stop                                             
+
+      10.000763356 seconds time elapsed
+
+# sudo perf stat -p $(pidof test-host) sleep 10
+
+ Performance counter stats for process id '25115':
+
+        847.348719 task-clock (msec)         #    0.085 CPUs utilized          
+            99,981 context-switches          #    0.118 M/sec                  
+                 0 cpu-migrations            #    0.000 K/sec                  
+                 0 page-faults               #    0.000 K/sec                  
+       607,782,792 cycles                    #    0.717 GHz                    
+   <not supported> stalled-cycles-frontend 
+   <not supported> stalled-cycles-backend  
+       700,673,778 instructions              #    1.15  insns per cycle        
+       130,516,259 branches                  #  154.029 M/sec                  
+           887,230 branch-misses             #    0.68% of all branches        
+
+      10.000683870 seconds time elapsed
+
+# sudo perf record -p $(pidof test-host) -s -T -R sleep 10
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.039 MB perf.data (~1685 samples) ]
+# sudo perf report -I -n | grep xxxxxxxxxxa -v
+# ========
+# captured on: Mon Aug 29 23:09:44 2016
+# hostname : test-Vostro-5470
+# os release : 3.13.0-45-generic
+# perf version : 3.13.11-ckt13
+# arch : x86_64
+# nrcpus online : 4
+# nrcpus avail : 4
+# cpudesc : Intel(R) Core(TM) i5-4200U CPU @ 1.60GHz
+# cpuid : GenuineIntel,6,69,1
+# total memory : 3953448 kB
+# cmdline : /usr/lib/linux-tools-3.13.0-45/perf record -p 25115 -s -T -R sleep 10 
+# event : name = cycles, type = 0, config = 0x0, config1 = 0x0, config2 = 0x0, excl_usr = 0, excl_kern = 0, excl_host = 0, excl_guest = 1, precise_ip = 0, attr_mmap2 = 0, attr_mmap  = 1, attr_mmap_data = 0
+# sibling cores   : 0-3
+# sibling threads : 0-1
+# sibling threads : 2-3
+# node0 meminfo  : total = 3953448 kB, free = 182324 kB
+# node0 cpu list : 0-3
+# pmu mappings: cpu = 4, software = 1, tracepoint = 2, breakpoint = 5
+# ========
+#
+# Samples: 442  of event 'cycles'
+# Event count (approx.): 534240571
+#
+# Overhead       Samples    Command      Shared Object                              Symbol
+# ........  ............  .........  .................  ..................................
+#
+    11.78%            68  test-host  [kernel.kallsyms]  [k] native_write_msr_safe         
+     5.29%            22  test-host  test-host          [.] timer_handler                 
+     5.29%            22  test-host  libc-2.19.so       [.] __GI___libc_nanosleep         
+     3.85%            16  test-host  [kernel.kallsyms]  [k] do_signal                     
+     3.60%            15  test-host  [kernel.kallsyms]  [k] update_cfs_shares             
+     2.88%            12  test-host  [kernel.kallsyms]  [k] dequeue_entity                
+     2.40%            10  test-host  [kernel.kallsyms]  [k] __restore_xstate_sig          
+     2.40%            10  test-host  [kernel.kallsyms]  [k] hrtimer_nanosleep             
+     2.40%            10  test-host  [kernel.kallsyms]  [k] kmem_cache_free               
+     2.16%             9  test-host  [kernel.kallsyms]  [k] hrtimer_init                  
+     2.16%             9  test-host  [kernel.kallsyms]  [k] do_nanosleep                  
+     1.92%             8  test-host  [kernel.kallsyms]  [k] save_xstate_sig               
+     1.70%             7  test-host  [kernel.kallsyms]  [k] system_call_after_swapgs      
+     1.68%             7  test-host  [kernel.kallsyms]  [k] recalc_sigpending             
+     1.68%             7  test-host  [kernel.kallsyms]  [k] __hrtimer_start_range_ns      
+     1.68%             7  test-host  [kernel.kallsyms]  [k] __calc_delta                  
+     1.68%             7  test-host  [kernel.kallsyms]  [k] update_curr                   
+     1.68%             7  test-host  [kernel.kallsyms]  [k] dequeue_task_fair             
+     1.68%             7  test-host  [kernel.kallsyms]  [k] ktime_get                     
+     1.44%             6  test-host  [kernel.kallsyms]  [k] timerqueue_add                
+     1.44%             6  test-host  [kernel.kallsyms]  [k] _raw_spin_lock                
+     1.44%             6  test-host  [kernel.kallsyms]  [k] _raw_spin_lock_irq            
+     1.20%             5  test-host  libc-2.19.so       [.] usleep                        
+     1.20%             5  test-host  [kernel.kallsyms]  [k] setup_sigcontext              
+     1.20%             5  test-host  [kernel.kallsyms]  [k] native_read_tsc               
+     1.20%             5  test-host  [kernel.kallsyms]  [k] do_sigaltstack                
+     1.20%             5  test-host  [kernel.kallsyms]  [k] update_min_vruntime           
+     1.20%             5  test-host  [kernel.kallsyms]  [k] cpuacct_charge                
+     1.20%             5  test-host  [kernel.kallsyms]  [k] ctx_sched_out                 
+     1.20%             5  test-host  [kernel.kallsyms]  [k] copy_user_enhanced_fast_string
+     1.20%             5  test-host  [kernel.kallsyms]  [k] _raw_spin_unlock_irqrestore   
+     1.20%             5  test-host  [kernel.kallsyms]  [k] int_check_syscall_exit_work   
+     1.20%             5  test-host  [kernel.kallsyms]  [k] __schedule                    
+     0.96%             7  test-host  [kernel.kallsyms]  [k] perf_event_context_sched_in   
+     0.96%             4  test-host  [kernel.kallsyms]  [k] get_signal_to_deliver         
+     0.96%             4  test-host  [kernel.kallsyms]  [k] sched_clock_cpu               
+     0.96%             4  test-host  [kernel.kallsyms]  [k] finish_task_switch            
+     0.96%             4  test-host  [kernel.kallsyms]  [k] system_call                   
+     0.72%             4  test-host  [kernel.kallsyms]  [k] perf_pmu_rotate_start.isra.39 
+     0.72%             3  test-host  [kernel.kallsyms]  [k] hrtimer_try_to_cancel         
+     0.72%             3  test-host  [kernel.kallsyms]  [k] sys_nanosleep                 
+     0.72%             3  test-host  [kernel.kallsyms]  [k] account_entity_dequeue        
+     0.72%             3  test-host  [kernel.kallsyms]  [k] put_prev_task_fair            
+     0.72%             3  test-host  [kernel.kallsyms]  [k] perf_event_sched_in           
+     0.72%             3  test-host  [kernel.kallsyms]  [k] _raw_spin_lock_irqsave        
+     0.72%             3  test-host  [kernel.kallsyms]  [k] stub_rt_sigreturn             
+     0.48%             2  test-host  test-host          [.] main                          
+     0.48%             2  test-host  libc-2.19.so       [.] __restore_rt                  
+     0.48%             2  test-host  [kernel.kallsyms]  [k] sys_rt_sigreturn              
+     0.48%             2  test-host  [kernel.kallsyms]  [k] read_tsc                      
+     0.48%             2  test-host  [kernel.kallsyms]  [k] native_sched_clock            
+     0.48%             2  test-host  [kernel.kallsyms]  [k] free_uid                      
+     0.48%             2  test-host  [kernel.kallsyms]  [k] __sigqueue_free.part.11       
+     0.48%             2  test-host  [kernel.kallsyms]  [k] restore_altstack              
+     0.48%             2  test-host  [kernel.kallsyms]  [k] pick_next_task_fair           
+     0.48%             2  test-host  [kernel.kallsyms]  [k] perf_pmu_disable              
+     0.48%             2  test-host  [kernel.kallsyms]  [k] __perf_event_task_sched_in    
+     0.48%             2  test-host  [kernel.kallsyms]  [k] __perf_event_task_sched_out   
+     0.48%             2  test-host  [kernel.kallsyms]  [k] schedule                      
+     0.48%             2  test-host  [kernel.kallsyms]  [k] system_call_fastpath          
+     0.48%             2  test-host  [kernel.kallsyms]  [k] sysret_signal                 
+     0.48%             2  test-host  [kernel.kallsyms]  [k] __set_current_blocked         
+     0.48%             2  test-host  [kernel.kallsyms]  [k] __remove_hrtimer              
+     0.48%             2  test-host  [kernel.kallsyms]  [k] clockevents_program_event     
+     0.25%             2  test-host  [kernel.kallsyms]  [k] _atomic_dec_and_lock          
+     0.24%             1  test-host  [kernel.kallsyms]  [k] restore_sigcontext            
+     0.24%             1  test-host  [kernel.kallsyms]  [k] do_notify_resume              
+     0.24%             1  test-host  [kernel.kallsyms]  [k] x86_pmu_disable               
+     0.24%             1  test-host  [kernel.kallsyms]  [k] intel_pmu_disable_all         
+     0.24%             1  test-host  [kernel.kallsyms]  [k] __dequeue_signal              
+     0.24%             1  test-host  [kernel.kallsyms]  [k] dequeue_signal                
+     0.24%             1  test-host  [kernel.kallsyms]  [k] __set_task_blocked            
+     0.24%             1  test-host  [kernel.kallsyms]  [k] enqueue_hrtimer               
+     0.24%             1  test-host  [kernel.kallsyms]  [k] idle_cpu                      
+     0.24%             1  test-host  [kernel.kallsyms]  [k] local_clock                   
+     0.24%             1  test-host  [kernel.kallsyms]  [k] pick_next_task_idle           
+     0.24%             1  test-host  [kernel.kallsyms]  [k] update_cfs_rq_blocked_load    
+     0.24%             1  test-host  [kernel.kallsyms]  [k] clear_buddies                 
+     0.24%             1  test-host  [kernel.kallsyms]  [k] pick_next_task_rt             
+     0.24%             1  test-host  [kernel.kallsyms]  [k] pick_next_task_stop           
+     0.24%             1  test-host  [kernel.kallsyms]  [k] perf_pmu_enable               
+     0.24%             1  test-host  [kernel.kallsyms]  [k] rb_insert_color               
+     0.24%             1  test-host  [kernel.kallsyms]  [k] __clear_user                  
+     0.24%             1  test-host  [kernel.kallsyms]  [k] retint_swapgs                 
+     0.24%             1  test-host  [kernel.kallsyms]  [k] sysret_check                  
+     0.24%             1  test-host  [kernel.kallsyms]  [k] hrtimer_start_range_ns        
+     0.00%             1  test-host  [kernel.kallsyms]  [k] _raw_spin_unlock              
+     0.00%             1  test-host  [kernel.kallsyms]  [k] x86_pmu_enable                
+
+
+#
+# (For a higher level overview, try: perf report --sort comm,dso)
+#
+

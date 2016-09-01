@@ -1,0 +1,434 @@
+# ./test.sh
+TH=10
+test-host: no process found
+cnt=0
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  0   0 100   0   0   0
+main: hello, i=20000
+  0   0 100   0   0   0
+main: hello, i=30000
+  0   0 100   0   0   0
+main: hello, i=40000
+  1   0  85  13   0   0
+main: hello, i=50000
+  0   0 100   0   0   0
+main: hello, i=60000
+  0   0  96   4   0   0
+main: hello, i=70000
+  0   0 100   0   0   0
+main: hello, i=80000
+  0   0 100   0   0   0
+main: hello, i=90000
+  0   0 100   0   0   0
+main: hello, i=100000
+  0   1  99   0   0   0
+AVG=0
+./test.sh: line 22: 10583 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=1
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  0   0 100   0   0   0
+main: hello, i=20000
+  0   1  97   2   0   0
+main: hello, i=30000
+  1   0  99   0   0   0
+main: hello, i=40000
+  3   0  97   0   0   0
+  0   0 100   0   0   0
+main: hello, i=50000
+  1   0  99   0   0   0
+main: hello, i=60000
+  3   1  96   0   0   0
+main: hello, i=70000
+  1   0  94   4   0   0
+main: hello, i=80000
+  0   0 100   0   0   0
+main: hello, i=90000
+  0   0 100   0   0   0
+AVG=0
+./test.sh: line 22: 10591 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=2
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  0   0 100   0   0   0
+main: hello, i=20000
+  0   0 100   0   0   0
+main: hello, i=30000
+  0   0 100   0   0   0
+main: hello, i=40000
+  0   0  97   3   0   0
+main: hello, i=50000
+  0   0 100   0   0   0
+main: hello, i=60000
+  0   0 100   0   0   0
+main: hello, i=70000
+  0   0 100   0   0   0
+main: hello, i=80000
+  0   0 100   0   0   0
+main: hello, i=90000
+  0   0 100   0   0   0
+main: hello, i=100000
+  1   0  94   4   0   0
+AVG=0
+./test.sh: line 22: 10599 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=3
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  0   0 100   0   0   0
+main: hello, i=20000
+  0   0 100   0   0   0
+main: hello, i=30000
+  0   0 100   0   0   0
+main: hello, i=40000
+  0   0 100   0   0   0
+main: hello, i=50000
+  1   0  99   0   0   0
+main: hello, i=60000
+  0   0 100   0   0   0
+main: hello, i=70000
+  0   0 100   0   0   0
+main: hello, i=80000
+  0   0 100   0   0   0
+main: hello, i=90000
+  0   0 100   0   0   0
+main: hello, i=100000
+  0   0  90  10   0   0
+AVG=0
+./test.sh: line 22: 10607 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=4
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  0   0 100   0   0   0
+main: hello, i=20000
+  0   0 100   0   0   0
+main: hello, i=30000
+  0   0 100   0   0   0
+main: hello, i=40000
+  0   0 100   0   0   0
+main: hello, i=50000
+  0   0 100   0   0   0
+main: hello, i=60000
+  0   0  97   3   0   0
+main: hello, i=70000
+  0   0 100   0   0   0
+main: hello, i=80000
+  0   0 100   0   0   0
+main: hello, i=90000
+  0   0 100   0   0   0
+main: hello, i=100000
+  0   0 100   0   0   0
+AVG=0
+./test.sh: line 22: 10615 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=5
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  0   0 100   0   0   0
+main: hello, i=20000
+  0   0  97   3   0   0
+main: hello, i=30000
+  0   0 100   0   0   0
+main: hello, i=40000
+  0   0 100   0   0   0
+main: hello, i=50000
+  0   0 100   0   0   0
+main: hello, i=60000
+  0   0 100   0   0   0
+main: hello, i=70000
+  0   0 100   0   0   0
+main: hello, i=80000
+  0   0  97   3   0   0
+main: hello, i=90000
+  0   0 100   0   0   0
+main: hello, i=100000
+  0   0 100   0   0   0
+AVG=0
+./test.sh: line 22: 10623 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=6
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  0   0 100   0   0   0
+main: hello, i=20000
+  0   1  99   0   0   0
+main: hello, i=30000
+  1   1  98   0   0   0
+main: hello, i=40000
+  2   0  98   0   0   0
+main: hello, i=50000
+  0   0 100   0   0   0
+  0   1  99   0   0   0
+main: hello, i=60000
+  0   0 100   0   0   0
+main: hello, i=70000
+  0   0 100   0   0   0
+main: hello, i=80000
+  0   0 100   0   0   0
+main: hello, i=90000
+  0   0 100   0   0   0
+main: hello, i=100000
+AVG=0
+./test.sh: line 22: 10633 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=7
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  3   0  97   0   0   0
+main: hello, i=20000
+  0   1  99   0   0   0
+main: hello, i=30000
+  0   0 100   0   0   0
+main: hello, i=40000
+  0   0  96   4   0   0
+main: hello, i=50000
+  1   0  99   0   0   0
+main: hello, i=60000
+  0   0 100   0   0   0
+main: hello, i=70000
+  0   0 100   0   0   0
+main: hello, i=80000
+  0   0 100   0   0   0
+main: hello, i=90000
+  1   1  98   0   0   0
+  1   3  96   0   0   0
+main: hello, i=100000
+AVG=0
+./test.sh: line 22: 10641 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=8
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  0   0 100   0   0   0
+main: hello, i=20000
+  1   3  95   0   0   0
+main: hello, i=30000
+  0   0 100   0   0   0
+  1   1  98   0   0   0
+main: hello, i=40000
+  2   2  95   1   0   0
+main: hello, i=50000
+  0   2  97   1   0   0
+main: hello, i=60000
+  1   0  99   0   0   0
+main: hello, i=70000
+  0   1  99   0   0   0
+main: hello, i=80000
+  1   2  97   0   0   0
+main: hello, i=90000
+  2   2  96   0   0   0
+AVG=1
+test-host: no process found
+./test.sh: line 22: 10650 Terminated              taskset -c 3 ./test-host
+cnt=9
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  2   1  97   0   0   0
+main: hello, i=20000
+  0   2  98   0   0   0
+main: hello, i=30000
+  2   1  94   3   0   0
+main: hello, i=40000
+  1   0  99   0   0   0
+main: hello, i=50000
+  0   0 100   0   0   0
+main: hello, i=60000
+  1   0  96   3   0   0
+main: hello, i=70000
+  0   0 100   0   0   0
+main: hello, i=80000
+  1   0  99   0   0   0
+  4   0  63  33   0   0
+main: hello, i=90000
+  2   1  97   0   0   0
+AVG=0
+./test.sh: line 22: 10658 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=10
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  1   0  99   0   0   0
+main: hello, i=20000
+  0   0  96   4   0   0
+main: hello, i=30000
+  0   0  86  14   0   0
+main: hello, i=40000
+  0   0 100   0   0   0
+main: hello, i=50000
+  0   0 100   0   0   0
+main: hello, i=60000
+  0   0 100   0   0   0
+main: hello, i=70000
+  0   0 100   0   0   0
+main: hello, i=80000
+  0   0 100   0   0   0
+main: hello, i=90000
+  0   0 100   0   0   0
+main: hello, i=100000
+  0   0 100   0   0   0
+AVG=0
+./test.sh: line 22: 10666 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=11
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  0   1  99   0   0   0
+main: hello, i=20000
+  0   0 100   0   0   0
+main: hello, i=30000
+  1   0  99   0   0   0
+main: hello, i=40000
+  1   0  95   4   0   0
+main: hello, i=50000
+  0   0 100   0   0   0
+main: hello, i=60000
+  0   0 100   0   0   0
+main: hello, i=70000
+  2   0  98   0   0   0
+main: hello, i=80000
+  0   0 100   0   0   0
+main: hello, i=90000
+  0   0 100   0   0   0
+main: hello, i=100000
+  0   0  97   3   0   0
+AVG=0
+./test.sh: line 22: 10674 Terminated              taskset -c 3 ./test-host
+test-host: no process found
+cnt=12
+test started period=100
+main: hello, i=0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0
+main: hello, i=10000
+  1  42  57   0   0   0
+main: hello, i=20000
+  0  47  53   0   0   0
+main: hello, i=30000
+  2  20  78   0   0   0
+main: hello, i=40000
+  1  37  62   0   0   0
+main: hello, i=50000
+  0  20  74   7   0   0
+  6  30  61   3   0   0
+main: hello, i=60000
+  4  31  66   0   0   0
+main: hello, i=70000
+  0  52  48   0   0   0
+main: hello, i=80000
+  1  52  48   0   0   0
+main: hello, i=90000
+  0  46  48   5   0   0
+AVG=37
+high cpu sys usage....
+main: hello, i=100000
+-------cpu3-usage------
+usr sys idl wai hiq siq
+ 13   2  84   0   0   0main: hello, i=110000
+
+  0  52  48   0   0   0main: hello, i=120000
+
+  1  42  55   2   0   0main: hello, i=130000
+
+  0  49  51   0   0   0main: hello, i=140000
+
+  1  51  48   0   0   0main: hello, i=150000
+
+  0  46  54   0   0   0main: hello, i=160000
+
+  2  14  81   3   0   0main: hello, i=170000
+
+  1  49  50   0   0   0^Z
+[1]+  Stopped                 ./test.sh
+root@test-Vostro-5470:/var/lib/tftpboot# bg
+[1]+ ./test.sh &
+root@test-Vostro-5470:/var/lib/tftpboot# main: hello, i=180000
+
+  4  27  68   1   0   0
+  0  50  50   0   0   0main: hello, i=190000
+
+  0  51  49   0   0   0main: hello, i=200000
+
+  3  48  48   0   0   0main: hello, i=210000
+
+  9  34  57   0   0   0 
+  1  46  54   0   0   0main: hello, i=220000
+
+  1  42  57   0   0   0main: hello, i=230000
+
+  1  51  48   0   0   0main: hello, i=240000
+
+  1  48  51   0   0   0main: hello, i=250000
+
+  1  51  48   0   0   0main: hello, i=260000
+
+  0  35  65   0   0   0main: hello, i=270000
+
+  1  51  49   0   0   0main: hello, i=280000
+
+  1  32  67   0   0   0main: hello, i=290000
+
+  1  49  50   0   0   0main: hello, i=300000
+
+root@test-Vostro-5470:/var/lib/tftpboot# killall test-host
+  1  21  78   0   0   0
+-------cpu3-usage------
+usr sys idl wai hiq siq
+  1   0  99   0   0   0
+  1   0  99   0   0   0
+  1   1  93   5   0   0
+  0   0 100   0   0   0
+  1   0  99   0   0   0
+

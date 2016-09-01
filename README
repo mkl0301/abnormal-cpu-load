@@ -1,0 +1,7 @@
+Makefile
+test.c
+test.sh
+
+test.log:       Console output
+debug-fail.log: Some debug tool output of fail case
+debug-good.log: Some debug tool output of good case
